@@ -5,13 +5,12 @@ Simple Site Generator is a simple static site generator written
 in Python. It's purpose is to learn how static site generators
 work and to create a personal blog and portfolio site. 
 
-It is composed of a single script `generate.py`. `generate.py`
+It is composed of a single script `build.py`. `build.py`
 looks for a folder called `posts`. Inside of `posts` are several
 Markdown files that will be generated and placed inside of another
-folder called `output`. `generate.py` will also create an index
-file which lists links to the posts ordered by date. 
+folder called `output`.
 
-`generate.py` uses a file called `template.html` to as a base template
+`build.py` uses a file called `template.html` to as a base template
 for the site. Inside of `template.html` you include other files such as
 css and javascript. 
 
@@ -25,7 +24,7 @@ The following headers are required:
 * date
 * title 
 
-After the headers are completed, insert two newlines. The rest of the file will
+After the headers are completed, insert a blank line. The rest of the file will
 be interpreted as markdown. The generated html will be inserted into the 
 body of the template web page. 
 

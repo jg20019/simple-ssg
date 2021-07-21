@@ -1,18 +1,22 @@
 import os
 import markdown
 import logging
+from typing import List
 
 from post import Post
 
 
 TEMPLATE_FILE = 'template.html'
 OUTPUT_DIR = 'output'
+
 logging.basicConfig(level=logging.DEBUG)
 
 
 class PostGenerator:
     "Class to generate blog posts"
     def __init__(self):
+        self.posts = []
+
         if os.path.isdir(OUTPUT_DIR):
             return 
 
@@ -21,10 +25,13 @@ class PostGenerator:
         os.mkdir(OUTPUT_DIR)
         logging.info('Done.')
 
-        self.posts = []
-
-    def generate(self):
-        pass 
+        
+    def generate(self, posts: List[Post]):
+        for post in posts:
+            self.generate_post(post)
+            self.posts.append(post)
+        self.generate_index() 
+            
 
     def generate_post(self, post: Post):
         content = markdown.markdown(post.body)
@@ -42,7 +49,8 @@ class PostGenerator:
             html_file.write(template)
 
     def generate_index(self):
-        pass
-
-    
-
+        # TODO: Look at jinja to see how generating 
+        # index can be done. 
+        # Might end up writing a templating library before
+        # it is all over with
+        print("Can't generate index yet")  
